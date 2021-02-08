@@ -14,20 +14,23 @@ class ViewController: UIViewController {
     @IBOutlet var resultLabel2: UILabel!  //右から2番目
     @IBOutlet var resultLabel3: UILabel!  //右から3番目
     @IBOutlet var resultLabel4: UILabel!  //右から4番目
-
+    
     //カウント表示用ラベル
     @IBOutlet var countLabel: UILabel!
     
-    //秘密のパスワード
-    var password:Int = 1110
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func start() {
+        //秘密のパスワード
+        var password: Int = Int.random(in: 0...9999)
+        
         for i in 0...9999 {
+            
             
             //解析中の数字を表示
             countLabel.text = String(i)
@@ -38,14 +41,12 @@ class ViewController: UIViewController {
             //passwordとiが一致したら...
             if i == password{
                 print("正解は\(i)です！")
-            }
-            
-            
-            //passwordとiが一致したら...
-            if i == password{
+                
+                
                 //passwordの桁ごとの数字を入れる配列
                 var digits = [Int]()
                 for _ in 0...3 {
+                    //配列に要素を足す時”append”
                     digits.append(password % 10)
                     password = password / 10
                 }
@@ -56,13 +57,12 @@ class ViewController: UIViewController {
                 resultLabel4.text = String(digits[3])
             }
             
-    }
+        }
     }
     
-     @IBAction func reset() {
+    @IBAction func reset() {
         
-        //passwordを1110に再設定する
-        password = 1110
+        
         
         //countLabelの表示を元に戻す
         countLabel.text = "「START」ボタンを押して解析開始"
@@ -73,6 +73,6 @@ class ViewController: UIViewController {
         resultLabel3.text = "0"
         resultLabel4.text = "0"
     }
-
+    
 }
 
